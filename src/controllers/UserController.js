@@ -11,7 +11,7 @@ const iniciasSersion = async (req, res) => {
     let usuario = req.body.usuario;
     let contrasena = req.body.password;
     //console.log(contrasena);
-    const response = await conexion.pool.query('SELECT nombre,usuario,apellido,codigo_rol,activo FROM control_usuarios.usuario WHERE usuario=$1 AND contrasena = $2', [usuario, contrasena]);
+    const response = await conexion.query('SELECT nombre,usuario,apellido,codigo_rol,activo FROM control_usuarios.usuario WHERE usuario=$1 AND contrasena = $2', [usuario, contrasena]);
    // res.json(response.rows[0])
    console.log(response.rows[0])
    res.json(response.rows[0]);
@@ -35,7 +35,7 @@ const iniciasSersion = async (req, res) => {
     // let activo=req.body.tamanio;
 
      
-    const response = await conexion.pool.query('INSERT INTO control_usuarios.usuario(nombre, apellido, usuario, contrasena,sexo, codigo_rol,activo) VALUES($1, $2, $3, $4, $5,$6,true) RETURNING *', [nombre,apellido,usuario,contrasena,sexo,codigo_rol,]);
+    const response = await conexion.query('INSERT INTO control_usuarios.usuario(nombre, apellido, usuario, contrasena,sexo, codigo_rol,activo) VALUES($1, $2, $3, $4, $5,$6,true) RETURNING *', [nombre,apellido,usuario,contrasena,sexo,codigo_rol,]);
      
 
 
@@ -54,7 +54,7 @@ const iniciasSersion = async (req, res) => {
         let usuario = req.body.usuario;
         let contrasena = req.body.password;
         //console.log(contrasena);
-        const response = await conexion.pool.query('SELECT nombre, apellido, usuario, contrasena,sexo, codigo_rol,activo FROM control_usuarios.usuario');
+        const response = await conexion.query('SELECT nombre, apellido, usuario, contrasena,sexo, codigo_rol,activo FROM control_usuarios.usuario');
        // res.json(response.rows[0])
        console.log(response.rows)
        res.json(response.rows);
@@ -70,7 +70,7 @@ const iniciasSersion = async (req, res) => {
           let usuario = req.body.usuario;
         
           //console.log(contrasena);
-          const response = await conexion.pool.query('UPDATE control_usuarios.usuario SET activo=false WHERE usuario = $1  RETURNING *',[usuario]);
+          const response = await conexion.query('UPDATE control_usuarios.usuario SET activo=false WHERE usuario = $1  RETURNING *',[usuario]);
          // res.json(response.rows[0])
          console.log(response.rows[0])
          res.json(response.rows[0]);
@@ -86,7 +86,7 @@ const iniciasSersion = async (req, res) => {
           let usuario = req.body.usuario;
         
           //console.log(contrasena);
-          const response = await conexion.pool.query('UPDATE control_usuarios.usuario SET activo=true WHERE usuario = $1  RETURNING *',[usuario]);
+          const response = await conexion.query('UPDATE control_usuarios.usuario SET activo=true WHERE usuario = $1  RETURNING *',[usuario]);
          // res.json(response.rows[0])
          console.log(response.rows[0])
          res.json(response.rows[0]);

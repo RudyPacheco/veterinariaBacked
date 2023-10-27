@@ -33,7 +33,7 @@ const registrarEsterilizacion = async (req, res) => {
 
 
      
-     const response = await conexion.pool.query('INSERT INTO control_esterilizaciones.esterilizacion(dpi,nombres,direccion,telefono,nombreMascota,numeroTurno,sexo,tipo,vacunas,espeVacunas,desparasitado,preanada,espePrenada,edadMascota,anticonceptivos,enfermedad,horaAyuno,fecha,autorizado,observaciones) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20) RETURNING *', [dpi,nombres,direccion, telefono,nombreMascota,numeroTurno,sexo,tipo,vacunas,espeVacunas,desparasitado,preanada,espePrenda,edadMascota,anticonceptivos,enfermedad,horaAyuno,fecha,true,observaciones]);
+     const response = await conexion.query('INSERT INTO control_esterilizaciones.esterilizacion(dpi,nombres,direccion,telefono,nombreMascota,numeroTurno,sexo,tipo,vacunas,espeVacunas,desparasitado,preanada,espePrenada,edadMascota,anticonceptivos,enfermedad,horaAyuno,fecha,autorizado,observaciones) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20) RETURNING *', [dpi,nombres,direccion, telefono,nombreMascota,numeroTurno,sexo,tipo,vacunas,espeVacunas,desparasitado,preanada,espePrenda,edadMascota,anticonceptivos,enfermedad,horaAyuno,fecha,true,observaciones]);
      
      
 
@@ -46,7 +46,7 @@ const registrarEsterilizacion = async (req, res) => {
 
 
     const listarEsterilizaciones = async (req,res) =>{
-      const response = await conexion.pool.query('SELECT * FROM control_esterilizaciones.esterilizacion;'  )
+      const response = await conexion.query('SELECT * FROM control_esterilizaciones.esterilizacion;'  )
       res.json(response.rows)
 
     }

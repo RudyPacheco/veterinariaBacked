@@ -9,6 +9,7 @@ const registrarAdopcion = async (req, res) => {
      // res.json(response.rows[0])
      let nombreAdoptante=req.body.nombres;
      let apellidoAdoptante=req.body.apellidos;
+     let dpiAdoptante = req.body.dpiadoptante;
      let telefonoAdoptante=req.body.telefono;
      let edadAdoptante=req.body.edad;
      let fechaAdopcion=req.body.fecha;
@@ -17,7 +18,7 @@ const registrarAdopcion = async (req, res) => {
      let sexo=req.body.sexo;
      let comentarios=req.body.comentarios;
      
-     const response = await conexion.pool.query('INSERT INTO control_adopciones.adopcion(nombreAdoptante,apellidoAdoptante,telefonoAdoptante,edadAdoptante,fecha,tamanioMascota,tipoMascota,sexo,comentarios) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *', [nombreAdoptante,apellidoAdoptante, telefonoAdoptante, edadAdoptante,fechaAdopcion,tamanioMascota,tipoMascota,sexo,comentarios]);
+     const response = await conexion.query('INSERT INTO control_adopciones.adopcion(nombreAdoptante,apellidoAdoptante,dpiAdoptante,telefonoAdoptante,edadAdoptante,fecha,tamanioMascota,tipoMascota,sexo,comentarios) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *', [nombreAdoptante,apellidoAdoptante,dpiAdoptante, telefonoAdoptante, edadAdoptante,fechaAdopcion,tamanioMascota,tipoMascota,sexo,comentarios]);
      
 
 
@@ -27,7 +28,7 @@ const registrarAdopcion = async (req, res) => {
     };
 
     const listarAdopciones = async (req,res) =>{
-      const response = await conexion.pool.query('SELECT * FROM control_adopciones.adopcion;'  )
+      const response = await conexion.query('SELECT * FROM control_adopciones.adopcion;'  )
       res.json(response.rows)
 
     }

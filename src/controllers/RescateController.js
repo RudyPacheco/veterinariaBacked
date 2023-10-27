@@ -12,7 +12,7 @@ const registrarRescate = async (req, res) => {
       let tipoMascota=req.body.tipo;
       let sexo=req.body.sexo;
       let condicion=req.body.estado;
-      const response = await conexion.pool.query('INSERT INTO control_rescates.rescate(lugar,fecha,tipoMascota,sexo,condicion) VALUES($1,$2,$3,$4,$5) RETURNING *', [lugar, fecha, tipoMascota,sexo,condicion]);
+      const response = await conexion.query('INSERT INTO control_rescates.rescate(lugar,fecha,tipoMascota,sexo,condicion) VALUES($1,$2,$3,$4,$5) RETURNING *', [lugar, fecha, tipoMascota,sexo,condicion]);
      // res.json(response.rows[0])
      console.log(response.rows[0])
      res.json(response.rows[0]);
@@ -21,7 +21,7 @@ const registrarRescate = async (req, res) => {
 
   
     const listarRescates = async (req,res) =>{
-      const response = await conexion.pool.query('SELECT * FROM control_rescates.rescate;'  )
+      const response = await conexion.query('SELECT * FROM control_rescates.rescate;'  )
       res.json(response.rows)
 
     }
@@ -34,7 +34,7 @@ const registrarRescate = async (req, res) => {
         let usuario = req.body.usuario;
         let contrasena = req.body.password;
         //console.log(contrasena);
-        const response = await conexion.pool.query('SELECT * FROM control_usuarios.usuario WHERE usuario=$1 AND contrasena = $2', [usuario, contrasena]);
+        const response = await conexion.query('SELECT * FROM control_usuarios.usuario WHERE usuario=$1 AND contrasena = $2', [usuario, contrasena]);
        // res.json(response.rows[0])
        console.log(response.rows[0])
        res.json(response.rows[0]);
