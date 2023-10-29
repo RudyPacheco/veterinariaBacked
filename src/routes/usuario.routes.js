@@ -12,6 +12,7 @@ router.post('/registrar',controllerUsuario.registrarUsuario);
 router.get('/getUsers',controllerUsuario.listarUsuarios);
 router.post('/activar',controllerUsuario.activarUsuario);
 router.post('/desactivar',controllerUsuario.desactivarUsuario);
+router.post('/recuperar',controllerUsuario.recuperarContrasena);
 
 
 

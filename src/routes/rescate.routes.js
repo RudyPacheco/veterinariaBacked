@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.post('/registrar',controllerRescate.registrarRescate);
 router.get('/listar',controllerRescate.listarRescates);
-
+router.post('/listarFecha',controllerRescate.listarXfecha);
+router.post('/eliminar',controllerRescate.eliminarValor)
 
 module.exports = router;

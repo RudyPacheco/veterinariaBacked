@@ -34,6 +34,26 @@ const registrarAdopcion = async (req, res) => {
     }
 
 
+    const listarXfecha = async (req,res) =>{
+
+      let fecha1 = req.body.fecha1;
+      let fecha2 = req.body.fecha1;
+      const response = await conexion.query('SELECT * FROM control_adopciones.adopcion WHERE fecha BETWEEN $1 AND $2',[fecha1,fecha2])
+      res.json(response.rows)
+
+    }
+
+
+    const eliminarValor = async (req,res) =>{
+      console.log(req.body)
+
+      let index = req.body.index;
+
+      const response = await conexion.query('DELETE FROM control_adopciones.adopcion WHERE id_adopcion = $1 RETURNING *',[index])
+      console.log(response.rows[0])
+      res.json(response.rows[0]);
+
+    }
 
 
     
@@ -47,6 +67,8 @@ const registrarAdopcion = async (req, res) => {
         // buscarUsuario: buscarUsuario,
          //registrarUsuario:registrarUsuario,
          registrarAdopcion:registrarAdopcion,
-         listarAdopciones:listarAdopciones
+         listarAdopciones:listarAdopciones,
+         listarXfecha:listarXfecha,
+         eliminarValor:eliminarValor
         // lisatarEmpleados:lisatarEmpleados,
      }

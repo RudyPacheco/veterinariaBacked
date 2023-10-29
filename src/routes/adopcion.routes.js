@@ -11,5 +11,6 @@ const router = express.Router();
 
 router.post('/registrar',controllerAdopcion.registrarAdopcion)
 router.get('/listar',controllerAdopcion.listarAdopciones)
-
+router.get('/listarFecha',controllerAdopcion.listarXfecha)
+router.post('/eliminar',controllerAdopcion.eliminarValor)
 module.exports = router;

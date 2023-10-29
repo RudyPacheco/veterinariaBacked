@@ -11,5 +11,6 @@ const router = express.Router();
 
 router.post('/registrar',controllerEsterilizacion.registrarEsterilizacion)
 router.get('/listar',controllerEsterilizacion.listarEsterilizaciones)
-
+router.post('/listarFecha',controllerEsterilizacion.listarXfecha)
+router.post('/eliminar',controllerEsterilizacion.eliminarValor)
 module.exports = router;

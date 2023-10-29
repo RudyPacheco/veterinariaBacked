@@ -18,6 +18,23 @@ const iniciasSersion = async (req, res) => {
 
   };
 
+//recuperar
+
+const recuperarContrasena = async (req, res) => {
+  console.log(req.query);
+  console.log(req.body);
+   // const { usuario, contrasena } = req.query;
+    console.log(req.body.usuario);
+    let usuario = req.body.usuario;
+
+    //console.log(contrasena);
+    const response = await conexion.query('SELECT * FROM control_usuarios.usuario WHERE usuario=$1', [usuario]);
+   // res.json(response.rows[0])
+   console.log(response.rows[0])
+   res.json(response.rows[0]);
+
+  };
+
 
   const registrarUsuario = async (req, res) => {
     console.log(req.body);
@@ -106,7 +123,8 @@ const iniciasSersion = async (req, res) => {
     registrarUsuario:registrarUsuario,
     listarUsuarios:listarUsuarios,
     desactivarUsuario:desactivarUsuario,
-    activarUsuario:activarUsuario
+    activarUsuario:activarUsuario,
+    recuperarContrasena:recuperarContrasena
    // lisatarEmpleados:lisatarEmpleados,
 }
 
