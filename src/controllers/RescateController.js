@@ -59,7 +59,7 @@ const registrarRescate = async (req, res) => {
   
         let index = req.body.index;
   
-        const response = await conexion.query('DELETE FROM control_rescates.rescate WHERE id_adopcion = $1 RETURNING *',[index])
+        const response = await conexion.query('DELETE FROM control_rescates.rescate WHERE id_rescate = $1 RETURNING *',[index])
         console.log(response.rows[0])
         res.json(response.rows[0]);
   
